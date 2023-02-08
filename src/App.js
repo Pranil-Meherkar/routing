@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import NotFound from "./components/NotFound";
+import Feedback from "./components/Feedback";
+import ContactPage from "./components/ContactsPage";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Homepage from "./components/Homepage";
+
+import { Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <h1>Following are the available routes</h1>
+        <ul>
+          <li>
+            <Link to="/">Homepage</Link>
+          </li>
+          <li>
+            <Link to="/feedback">Feedback</Link>
+          </li>
+          <li>
+            <Link to="/contact-page">Contact-Page</Link>
+          </li>
+          <li>
+            <Link to="asdf">Some Invalid Route</Link>
+          </li>
+        </ul>
+        <Routes>
+          <Route path="/contact-page" element={<ContactPage />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/not-found" element={<NotFound />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
